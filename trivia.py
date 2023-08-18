@@ -1,5 +1,7 @@
 #!/bin/env python3
+#author: Noah
 
+def main():
 import html 
 
 trivia= {
@@ -28,4 +30,4 @@ print("D", incorrect3)
 input()
 print(f"{correct} was the correct answer")
 
-
+main()
