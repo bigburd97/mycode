@@ -20,29 +20,42 @@ def main():
 
     while hero_life > 0:
         print(f"\nRound: {round_num}")
-        enemy_health = random.randint(5, 10) +  random.randint(1, 10)
+        monster = get_random_monster()  # Get a random monster for the round
+        enemy_health = random.randint(10, 20) + round_num * random.randint(1, 10)
         
-        # Prompt for user input on attack strength
+        print(f"A wild {monster} appears!")
+        print(f"Hero total: {hero_life}\t\tEnemy health: {enemy_health}")
+
         hero_attack = int(input("Enter your attack strength (1-30): "))
         if hero_attack < 1:
             hero_attack = 1
         elif hero_attack > 30:
             hero_attack = 30
 
-        print(f"Hero total: {hero_life}\t\tEnemy health: {enemy_health}")
         print(f"Hero attack: {hero_attack}\n")
 
         if hero_attack >= enemy_health:
-            print("Survived!")
-            hero_life -= max(0, enemy_health - hero_attack // 2)  # Deduct life based on attack strength
+            print(f"You defeated the {monster}!")
+            enemy_health = 0  # Defeat the enemy without taking damage
         else:
+            print(f"The {monster} counterattacks!")
+            hero_life -= max(0, enemy_health - hero_attack // 2)  # Deduct life based on enemy's remaining health
+
+        if hero_life <= 0:
             print("DEATH!!!!")
             break
-        
+
         round_num += 1
 
-    if hero_life <= 0:
-        print(f"\nGame Over! {name}, the {character}, couldn't defeat the enemies.")
+    if hero_life > 0:
+        print(f"\nCongratulations! {name}, the {character}, defeated the enemies.")
+
+def get_random_monster():
+    """
+    Returns a random monster name for each round.
+    """
+    monsters = ["Dragon", "Goblin", "Orc", "Zombie", "Spider"]
+    return random.choice(monsters)
 
 if __name__ == "__main__":
     main()
