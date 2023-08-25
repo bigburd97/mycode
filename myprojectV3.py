@@ -19,7 +19,7 @@ def main():
 
     # Display ASCII art of a sword or weapon
     print("\n")
-    tprint("FIGHT", font="doom")  # Display "FIGHT" in ASCII art
+    tprint("Prepare\n to\nFIGHT", font="doom")  # Display "FIGHT" in ASCII art
     print("\n")
 
 main()
